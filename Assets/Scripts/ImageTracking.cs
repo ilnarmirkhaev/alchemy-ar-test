@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 
 [RequireComponent(typeof(ARTrackedImageManager))]
 public class ImageTracking : MonoBehaviour
@@ -14,7 +15,7 @@ public class ImageTracking : MonoBehaviour
     
     private ARTrackedImageManager _trackedImageManager;
 
-    [SerializeField] private GameObject textPrefab;
+    [SerializeField] private GameObject labelPrefab;
 
     public void HideAllObjects()
     {
@@ -39,14 +40,15 @@ public class ImageTracking : MonoBehaviour
     private GameObject CreateObject(GameObject obj)
     {
         var newObject = Instantiate(obj, Vector3.zero, Quaternion.identity);
-            
         newObject.name = obj.name;
+        
+        // Add label to object
+        var label = Instantiate(labelPrefab, new Vector3(0, 0, -0.6f), Quaternion.identity, newObject.transform);
+        label.GetComponent<TMP_Text>().text = newObject.name;
+        
+        // Scale last not to break label position
         newObject.transform.localScale = scaleFactor;
         newObject.SetActive(false);
-        
-        // Add text to object
-        var text = Instantiate(textPrefab, newObject.transform.position, Quaternion.identity, newObject.transform);
-        text.GetComponent<TMP_Text>().text = newObject.name;
         
         return newObject;
     }
@@ -81,8 +83,10 @@ public class ImageTracking : MonoBehaviour
 
     private void UpdateTrackedImage(ARTrackedImage trackedImage)
     {
-        // something else, text, etc.
-        AssignGameObjectToTrackedImage(trackedImage.referenceImage.name, trackedImage.transform.position);
+        if (trackedImage.trackingState == TrackingState.Tracking)
+            AssignGameObjectToTrackedImage(trackedImage.referenceImage.name, trackedImage.transform.position);
+        else
+            _arObjects[trackedImage.referenceImage.name].SetActive(false);
     }
 
     private void AssignGameObjectToTrackedImage(string imageName, Vector3 imagePosition)
@@ -92,8 +96,5 @@ public class ImageTracking : MonoBehaviour
         var currentObject = _arObjects[imageName];
         currentObject.SetActive(true);
         currentObject.transform.position = imagePosition;
-        
-        // what if too many objects?
-        // disable?
     }
 }
