@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2391393257424207160}
   - component: {fileID: 6510526738755156381}
   - component: {fileID: 4802166997068234081}
+  - component: {fileID: -3202304549473592109}
+  - component: {fileID: 5364937989588211793}
   m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
@@ -97,3 +99,34 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &-3202304549473592109
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6969966660916761593}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!114 &5364937989588211793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6969966660916761593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8089c862bfe66c74886733e505edea2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  status: 0
+  tempStatus: 1
+  _temperature: 50

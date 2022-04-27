@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 208035497}
   - component: {fileID: 208035496}
   - component: {fileID: 208035498}
+  - component: {fileID: 208035499}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -332,6 +333,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arCameraManager: {fileID: 1004388578}
+--- !u!114 &208035499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208035495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &899758572
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +425,7 @@ GameObject:
   - component: {fileID: 972050386}
   - component: {fileID: 972050388}
   - component: {fileID: 972050389}
+  - component: {fileID: 972050390}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -467,12 +489,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3981a1b2c489766478c06b4d5deecb73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleFactor: 0.1
+  scaleFactor: {x: 0.1, y: 0.1, z: 0.1}
   objectsToPlace:
   - {fileID: 6969966660916761593, guid: d92909353956f124896e3c3094ab50d3, type: 3}
   - {fileID: 6969966660916761593, guid: e84ce94c0dc914a4dbe703539f3ecec7, type: 3}
   - {fileID: 6969966660916761593, guid: 42d6f056056493e4fbb551b5bab86605, type: 3}
+  - {fileID: 382979872428013998, guid: c24fabcaaf32dc446b9ed168f1536018, type: 3}
   labelPrefab: {fileID: 3914560053902378706, guid: a189a2bf9f9e8da4aa73cdd4eff7499b, type: 3}
+--- !u!114 &972050390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972050385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49fe4f5a32fb0504080ce7fdb1832f04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recipes:
+  - {fileID: 11400000, guid: 6198dd8c9aa3acb4bb8f2419e0a55cd3, type: 2}
 --- !u!1 &1004388575
 GameObject:
   m_ObjectHideFlags: 0
