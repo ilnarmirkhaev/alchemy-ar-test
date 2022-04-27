@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace AlchemyAR.Alchemy
@@ -17,10 +18,17 @@ namespace AlchemyAR.Alchemy
             Hot
         }
 
+        public new string name;
         public Status status = Status.Normal;
         public TemperatureStatus tempStatus = TemperatureStatus.Warm;
         
         [Range(0, 100)] public float temperature = 50;
+
+        // Call after ImageTracking Awake()
+        private void Start()
+        {
+            name = gameObject.name;
+        }
 
         public void ChangeTemperature(float tempOffset)
         {
@@ -42,19 +50,21 @@ namespace AlchemyAR.Alchemy
             };
         }
 
-        // TODO: fix getting called twice
         private void OnCollisionEnter(Collision collision)
         {
             var obj = collision.gameObject;
             
+            // Check for collision with another ingredient
             if (!obj.TryGetComponent(out Ingredient _)) return;
             
             Debug.Log(gameObject.name + " collided with " + obj.name);
             
-            if (!CraftingManager.Instance.TryMixIngredients(gameObject.name, obj.name))
-            {
-                status = Status.Wasted;
-            }
+            CraftingManager.Instance.AddIngredient(this);
+        }
+
+        public void SetToWasted()
+        {
+            status = Status.Wasted;
         }
     }
 }

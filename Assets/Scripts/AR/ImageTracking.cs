@@ -13,7 +13,7 @@ namespace AlchemyAR.AR
     
         [SerializeField] private GameObject[] objectsToPlace;
 
-        private Dictionary<string, GameObject> _arObjects = new Dictionary<string, GameObject>();
+        public readonly Dictionary<string, GameObject> ARObjects = new Dictionary<string, GameObject>();
     
         private ARTrackedImageManager _trackedImageManager;
 
@@ -21,7 +21,7 @@ namespace AlchemyAR.AR
 
         public void HideAllObjects()
         {
-            foreach (var obj in _arObjects.Values)
+            foreach (var obj in ARObjects.Values)
             {
                 obj.SetActive(false);
             }
@@ -35,7 +35,7 @@ namespace AlchemyAR.AR
             foreach (var obj in objectsToPlace)
             {
                 var newObject = CreateObject(obj);
-                _arObjects.Add(newObject.name, newObject);
+                ARObjects.Add(newObject.name, newObject);
             }
         }
 
@@ -79,7 +79,7 @@ namespace AlchemyAR.AR
         
             foreach (var trackedImage in eventArgs.removed)
             {
-                _arObjects[trackedImage.referenceImage.name].SetActive(false);
+                ARObjects[trackedImage.referenceImage.name].SetActive(false);
             }
         }
 
@@ -88,14 +88,14 @@ namespace AlchemyAR.AR
             if (trackedImage.trackingState == TrackingState.Tracking)
                 AssignGameObjectToTrackedImage(trackedImage.referenceImage.name, trackedImage.transform.position);
             else
-                _arObjects[trackedImage.referenceImage.name].SetActive(false);
+                ARObjects[trackedImage.referenceImage.name].SetActive(false);
         }
 
         private void AssignGameObjectToTrackedImage(string imageName, Vector3 imagePosition)
         {
-            if (!_arObjects.ContainsKey(imageName)) return;
+            if (!ARObjects.ContainsKey(imageName)) return;
         
-            var currentObject = _arObjects[imageName];
+            var currentObject = ARObjects[imageName];
             currentObject.SetActive(true);
             currentObject.transform.position = imagePosition;
         }

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bfb9818e66a63d44981865a090c75bb, type: 3}
   m_Name: Test Recipe
   m_EditorClassIdentifier: 
-  ingredient1: Target
-  ingredient2: Wood
+  ingredient1: {fileID: 5364937989588211793, guid: 42d6f056056493e4fbb551b5bab86605, type: 3}
+  tempStatus1: 0
+  ingredient2: {fileID: 5952354215764203471, guid: c24fabcaaf32dc446b9ed168f1536018, type: 3}
+  tempStatus2: 2
   result: {fileID: 7611431413417536425, guid: 78c18acaad35ef743802351d25e40299, type: 3}

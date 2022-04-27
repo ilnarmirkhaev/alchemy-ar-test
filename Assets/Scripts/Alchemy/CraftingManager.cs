@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using AlchemyAR.AR;
 using UnityEngine;
 
 namespace AlchemyAR.Alchemy
@@ -6,6 +7,12 @@ namespace AlchemyAR.Alchemy
     public class CraftingManager : MonoBehaviour
     {
         public static CraftingManager Instance { get; private set; }
+
+        public ImageTracking imageTrackingManager;
+        
+        [SerializeField] private List<Recipe> recipes;
+
+        private (Ingredient ingr1, Ingredient ingr2) _ingredientsToMix;
 
         private void Awake()
         {
@@ -17,27 +24,55 @@ namespace AlchemyAR.Alchemy
             {
                 Instance = this;
             }
-            
         }
 
-        [SerializeField] private List<Recipe> recipes;
-
-        public bool TryMixIngredients(string ingredient1, string ingredient2)
+        public void AddIngredient(Ingredient ingredient)
         {
-            foreach (var recipe in recipes)
+            if (_ingredientsToMix.ingr1 == null)
+                _ingredientsToMix.ingr1 = ingredient;
+            else if (_ingredientsToMix.ingr2 == null)
+                _ingredientsToMix.ingr2 = ingredient;
+            else
             {
-                if (recipe.ingredient1 == ingredient1 && recipe.ingredient2 == ingredient2)
+                TryMixIngredients(_ingredientsToMix.ingr1, _ingredientsToMix.ingr2);
+                ClearIngredients();
+            }
+        }
+
+        private void ClearIngredients()
+        {
+            _ingredientsToMix.ingr1 = null;
+            _ingredientsToMix.ingr2 = null;
+        }
+
+        private void TryMixIngredients(Ingredient ingr1, Ingredient ingr2)
+        {
+            if (ingr1.status == Ingredient.Status.Wasted || ingr2.status == Ingredient.Status.Wasted)
+            {
+                ingr1.SetToWasted();
+                ingr2.SetToWasted();
+                return;
+            }
+            
+            foreach (var recipe in recipes)
+                if (recipe.IsCorrect(ingr1, ingr2))
                 {
                     Debug.Log("Success!");
-                    // TODO: don't let multiple objects to spawn, add to _arObjects
-                    var result = Instantiate(recipe.result, Vector3.zero, Quaternion.identity);
-                    result.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-                    return true;
+                    
+                    var result = imageTrackingManager.ARObjects[recipe.result.name];
+                    result.SetActive(true);
+                    result.transform.position = Vector3.Lerp(
+                        ingr1.gameObject.transform.position,
+                        ingr2.gameObject.transform.position,
+                        0.5f
+                        );
+                    
+                    return;
                 }
-            }
 
             Debug.Log("Fail");
-            return false;
+            ingr1.SetToWasted();
+            ingr2.SetToWasted();
         }
     }
 }
