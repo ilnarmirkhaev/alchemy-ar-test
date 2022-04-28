@@ -5,10 +5,10 @@ namespace AlchemyAR.Alchemy
     [CreateAssetMenu(fileName = "New Recipe", menuName = "Alchemy/Recipe")]
     public class Recipe : ScriptableObject
     {
-        public Ingredient ingredient1;
+        public GameObject ingredient1;
         public Ingredient.TemperatureStatus tempStatus1;
         
-        public Ingredient ingredient2;
+        public GameObject ingredient2;
         public Ingredient.TemperatureStatus tempStatus2;
         
         public GameObject result;
@@ -19,6 +19,11 @@ namespace AlchemyAR.Alchemy
                    (ing2.name, ing2.tempStatus) == (ingredient2.name, tempStatus2) ||
                    (ing2.name, ing2.tempStatus) == (ingredient1.name, tempStatus1) &&
                    (ing1.name, ing1.tempStatus) == (ingredient2.name, tempStatus2);
+        }
+
+        public void LogRecipe()
+        {
+            Debug.Log($"{result.name} recipe: {ingredient1.name} ({tempStatus1}) + {ingredient2.name} ({tempStatus2})");
         }
     }
 }

@@ -52,10 +52,13 @@ namespace AlchemyAR.Alchemy
 
         private void OnCollisionEnter(Collision collision)
         {
+            // Don't mix if ingredient is wasted
+            if (status == Status.Wasted) return;
+            
             var obj = collision.gameObject;
             
-            // Check for collision with another ingredient
-            if (!obj.TryGetComponent(out Ingredient _)) return;
+            // Do nothing if object isn't an ingredient or is wasted
+            if (!obj.TryGetComponent(out Ingredient ingr) || ingr.status == Status.Wasted) return;
             
             Debug.Log(gameObject.name + " collided with " + obj.name);
             

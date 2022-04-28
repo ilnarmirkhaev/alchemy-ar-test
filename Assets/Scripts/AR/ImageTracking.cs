@@ -45,10 +45,10 @@ namespace AlchemyAR.AR
             newObject.name = obj.name;
         
             // Add label to object
-            // var label = Instantiate(labelPrefab, new Vector3(0, 0, -0.6f), Quaternion.identity, newObject.transform);
-            // label.GetComponent<TMP_Text>().text = newObject.name;
+            var label = Instantiate(labelPrefab, new Vector3(0, 0, -0.6f), Quaternion.identity, newObject.transform);
+            label.GetComponent<TMP_Text>().text = newObject.name;
         
-            // Scale last not to break label position
+            // Scale last to not break label position
             newObject.transform.localScale = scaleFactor;
             newObject.SetActive(false);
         

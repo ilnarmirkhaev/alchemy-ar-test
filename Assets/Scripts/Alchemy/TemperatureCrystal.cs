@@ -16,7 +16,7 @@ namespace AlchemyAR.Alchemy
         private void OnCollisionStay(Collision collision)
         {
             var obj = collision.gameObject;
-            if (obj.TryGetComponent(out Ingredient ingredient))
+            if (obj.TryGetComponent(out Ingredient ingredient) && ingredient.status == Ingredient.Status.Normal)
             {
                 ingredient.ChangeTemperature(tempOffset);
             }
