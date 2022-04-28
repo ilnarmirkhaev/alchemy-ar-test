@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using AlchemyAR.AR;
+using Lean.Touch;
 using UnityEngine;
 
 namespace AlchemyAR.Alchemy
@@ -73,12 +74,18 @@ namespace AlchemyAR.Alchemy
                     Debug.Log("Success!");
                     
                     var result = imageTrackingManager.ARObjects[recipe.result.name];
-                    result.SetActive(true);
+                    
+                    // Add LeanDragTranslate to drag object via touch
+                    if (!result.TryGetComponent(out LeanDragTranslate _))
+                        result.AddComponent<LeanDragTranslate>();
+                    
                     result.transform.position = Vector3.Lerp(
                         ingr1.gameObject.transform.position,
                         ingr2.gameObject.transform.position,
                         0.5f
-                    );
+                    ) + Vector3.up * 0.25f; // Move result up, so it doesn't collide with others
+                    
+                    result.SetActive(true);
                     
                     return;
                 }

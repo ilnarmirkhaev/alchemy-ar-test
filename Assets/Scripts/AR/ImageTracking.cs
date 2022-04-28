@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using AlchemyAR.Alchemy;
 using TMPro;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
@@ -19,11 +20,13 @@ namespace AlchemyAR.AR
 
         [SerializeField] private GameObject labelPrefab;
 
-        public void HideAllObjects()
+        public void ResetAllObjects()
         {
             foreach (var obj in ARObjects.Values)
             {
                 obj.SetActive(false);
+                if (obj.TryGetComponent(out Ingredient ingredient))
+                    ingredient.ResetValues();
             }
         }
 

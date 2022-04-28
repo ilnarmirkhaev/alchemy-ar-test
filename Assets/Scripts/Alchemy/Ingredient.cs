@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace AlchemyAR.Alchemy
@@ -68,6 +67,13 @@ namespace AlchemyAR.Alchemy
         public void SetToWasted()
         {
             status = Status.Wasted;
+        }
+
+        public void ResetValues()
+        {
+            status = Status.Normal;
+            temperature = 50;
+            tempStatus = TemperatureStatus.Warm;
         }
     }
 }

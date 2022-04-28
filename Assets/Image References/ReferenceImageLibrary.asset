@@ -38,16 +38,6 @@ MonoBehaviour:
     m_Name: Ice Crystal
     m_Texture: {fileID: 2800000, guid: 9d9244c21ea71ec488b669e66381910c, type: 3}
   - m_SerializedGuid:
-      m_GuidLow: 5144165153619322630
-      m_GuidHigh: 6699096265815055244
-    m_SerializedTextureGuid:
-      m_GuidLow: 9112161490695850927
-      m_GuidHigh: 12506919544440873689
-    m_Size: {x: 0.1, y: 0.1}
-    m_SpecifySize: 1
-    m_Name: Target
-    m_Texture: {fileID: 2800000, guid: f4eb8bafe6987e74d9e2c9a80f8191ad, type: 3}
-  - m_SerializedGuid:
       m_GuidLow: 5571200593404159652
       m_GuidHigh: 3033973262484215977
     m_SerializedTextureGuid:
@@ -57,3 +47,23 @@ MonoBehaviour:
     m_SpecifySize: 1
     m_Name: Wood
     m_Texture: {fileID: 2800000, guid: 39844b44bc90e144cb80e2bdb3b3df76, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5190945123457419700
+      m_GuidHigh: 9569250751633584258
+    m_SerializedTextureGuid:
+      m_GuidLow: 2676355357414031878
+      m_GuidHigh: 7355888584849817080
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: Stone
+    m_Texture: {fileID: 2800000, guid: 8360820653042524f8fd52dbb15d1566, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 4645925629146936374
+      m_GuidHigh: 17092122419033508784
+    m_SerializedTextureGuid:
+      m_GuidLow: 4707506208743538412
+      m_GuidHigh: 900259527096239881
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: Garlic
+    m_Texture: {fileID: 2800000, guid: 961abeec6bf4415409873b26455d7e0c, type: 3}

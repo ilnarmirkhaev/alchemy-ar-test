@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6208518361429332984}
   - component: {fileID: 8859315124720075991}
   m_Layer: 0
-  m_Name: Spear
+  m_Name: Aspen Stake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
