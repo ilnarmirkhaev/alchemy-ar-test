@@ -10,7 +10,7 @@ namespace AlchemyAR.AR
     [RequireComponent(typeof(ARTrackedImageManager))]
     public class ImageTracking : MonoBehaviour
     {
-        [SerializeField] private Vector3 scaleFactor = new Vector3(0.1f, 0.1f, 0.1f);
+        [SerializeField] private Vector3 refSize = new Vector3(0.1f, 0.1f, 0.1f);
     
         [SerializeField] private GameObject[] objectsToPlace;
 
@@ -24,9 +24,9 @@ namespace AlchemyAR.AR
         {
             foreach (var obj in ARObjects.Values)
             {
-                obj.SetActive(false);
                 if (obj.TryGetComponent(out Ingredient ingredient))
                     ingredient.ResetValues();
+                obj.SetActive(false);
             }
         }
 
@@ -46,16 +46,41 @@ namespace AlchemyAR.AR
         {
             var newObject = Instantiate(obj, Vector3.zero, Quaternion.identity);
             newObject.name = obj.name;
-        
+
+            // Add Ingredient script component to object
+            if (!newObject.CompareTag("Potion") && !newObject.TryGetComponent(out TemperatureCrystal _) && !newObject.TryGetComponent(out Ingredient _))
+                newObject.AddComponent<Ingredient>();
+            
             // Add label to object
             var label = Instantiate(labelPrefab, new Vector3(0, 0, -0.6f), Quaternion.identity, newObject.transform);
             label.GetComponent<TMP_Text>().text = newObject.name;
         
             // Scale last to not break label position
-            newObject.transform.localScale = scaleFactor;
+            ResizeObject(newObject, label);
+            
             newObject.SetActive(false);
         
             return newObject;
+        }
+
+        private void ResizeObject(GameObject obj, GameObject label)
+        {
+            var objSize = new Vector3();
+            
+            if (obj.TryGetComponent(out Renderer r))
+                objSize = r.bounds.size;
+            else if (obj.TryGetComponent(out Collider c))
+                objSize = c.bounds.size;
+
+            var objScale = obj.transform.localScale;
+            
+            var resize = refSize.x / objSize.x * objScale.x;
+
+            obj.transform.localScale = new Vector3(resize, resize, resize);
+
+            // Fix label transform
+            label.transform.localScale = refSize / resize;
+            label.transform.position *= refSize.x / resize;
         }
 
         private void OnEnable()

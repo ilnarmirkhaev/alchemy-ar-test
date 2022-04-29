@@ -38,28 +38,8 @@ MonoBehaviour:
     m_Name: Ice Crystal
     m_Texture: {fileID: 2800000, guid: 9d9244c21ea71ec488b669e66381910c, type: 3}
   - m_SerializedGuid:
-      m_GuidLow: 5571200593404159652
-      m_GuidHigh: 3033973262484215977
-    m_SerializedTextureGuid:
-      m_GuidLow: 16232306284576394052
-      m_GuidHigh: 8565762600848228555
-    m_Size: {x: 0.1, y: 0.1}
-    m_SpecifySize: 1
-    m_Name: Wood
-    m_Texture: {fileID: 2800000, guid: 39844b44bc90e144cb80e2bdb3b3df76, type: 3}
-  - m_SerializedGuid:
-      m_GuidLow: 5190945123457419700
-      m_GuidHigh: 9569250751633584258
-    m_SerializedTextureGuid:
-      m_GuidLow: 2676355357414031878
-      m_GuidHigh: 7355888584849817080
-    m_Size: {x: 0.1, y: 0.1}
-    m_SpecifySize: 1
-    m_Name: Stone
-    m_Texture: {fileID: 2800000, guid: 8360820653042524f8fd52dbb15d1566, type: 3}
-  - m_SerializedGuid:
-      m_GuidLow: 4645925629146936374
-      m_GuidHigh: 17092122419033508784
+      m_GuidLow: 5403828448364945991
+      m_GuidHigh: 18029293681883190713
     m_SerializedTextureGuid:
       m_GuidLow: 4707506208743538412
       m_GuidHigh: 900259527096239881
@@ -67,3 +47,43 @@ MonoBehaviour:
     m_SpecifySize: 1
     m_Name: Garlic
     m_Texture: {fileID: 2800000, guid: 961abeec6bf4415409873b26455d7e0c, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5694055889622252881
+      m_GuidHigh: 11305455246453009565
+    m_SerializedTextureGuid:
+      m_GuidLow: 154251549591996197
+      m_GuidHigh: 1514546669795607434
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: Lemon
+    m_Texture: {fileID: 2800000, guid: 937c072502f702248a03ebf82bc00415, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5025181252931140935
+      m_GuidHigh: 14531333745182488465
+    m_SerializedTextureGuid:
+      m_GuidLow: 16227768709252212055
+      m_GuidHigh: 16616875656548809529
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: Acorn
+    m_Texture: {fileID: 2800000, guid: a42d65579da9e134397b6da15e009be6, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 4888692474353041196
+      m_GuidHigh: 6687954904211104175
+    m_SerializedTextureGuid:
+      m_GuidLow: 12115945885699738255
+      m_GuidHigh: 11002824633608707818
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: Egg
+    m_Texture: {fileID: 2800000, guid: 0afd0a8f7c97a824ea1e2a74b5e2b198, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5446135486370524836
+      m_GuidHigh: 11842817827427514006
+    m_SerializedTextureGuid:
+      m_GuidLow: 7571914595934655662
+      m_GuidHigh: 14029560413569327306
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: Mushroom
+    m_Texture: {fileID: 2800000, guid: 1047d4aed8356914caa0ae45dd02b3c2, type: 3}

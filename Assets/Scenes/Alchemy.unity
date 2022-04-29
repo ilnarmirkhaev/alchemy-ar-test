@@ -489,15 +489,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3981a1b2c489766478c06b4d5deecb73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleFactor: {x: 0.1, y: 0.1, z: 0.1}
+  refSize: {x: 0.1, y: 0.1, z: 0.1}
   objectsToPlace:
-  - {fileID: 6969966660916761593, guid: d92909353956f124896e3c3094ab50d3, type: 3}
-  - {fileID: 6969966660916761593, guid: e84ce94c0dc914a4dbe703539f3ecec7, type: 3}
-  - {fileID: 6969966660916761593, guid: 42d6f056056493e4fbb551b5bab86605, type: 3}
-  - {fileID: 382979872428013998, guid: c24fabcaaf32dc446b9ed168f1536018, type: 3}
-  - {fileID: 7611431413417536425, guid: 78c18acaad35ef743802351d25e40299, type: 3}
+  - {fileID: 1150642482621776, guid: fb9cf3e4ca9ae1644bb2faba13f475ca, type: 3}
+  - {fileID: 1678884195978160, guid: ca5247f68200216498cf2e4f5a04387d, type: 3}
+  - {fileID: 7112310692730709699, guid: 869702160b1b80a46abcf73972154da3, type: 3}
+  - {fileID: 7112310692730709699, guid: 968832b66c910914f90d3f25a597941c, type: 3}
   - {fileID: 7112310692730709699, guid: ce8d7b2cfc8ef2c4bbca3d3db1540bfc, type: 3}
-  - {fileID: 7611431413417536425, guid: 5fab7f71170127b47bed332b6c78a1e6, type: 3}
+  - {fileID: 7112310692730709699, guid: f7ae6d8006c66664fbd862d903fe2825, type: 3}
+  - {fileID: 7112310692730709699, guid: f2296fa777c7b4e43afb74853721d068, type: 3}
+  - {fileID: 7112310692730709699, guid: 726198c171df5a549b4c2f12f7dab798, type: 3}
+  - {fileID: 1000013846074356, guid: 104a91df947681d4b87e81c4d2ac2bbe, type: 3}
+  - {fileID: 1000013317980782, guid: 4253aedc097b068479861849fc0fe417, type: 3}
   labelPrefab: {fileID: 3914560053902378706, guid: a189a2bf9f9e8da4aa73cdd4eff7499b, type: 3}
 --- !u!114 &972050390
 MonoBehaviour:
@@ -513,8 +516,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageTrackingManager: {fileID: 972050389}
   recipes:
-  - {fileID: 11400000, guid: 6198dd8c9aa3acb4bb8f2419e0a55cd3, type: 2}
-  - {fileID: 11400000, guid: a1221419bfe4e6748b853f1ab6c3328d, type: 2}
+  - {fileID: 11400000, guid: a342213abd3cbfb449f48058c7d883a8, type: 2}
+  - {fileID: 11400000, guid: c471d87244dd06c4097e67f9102dc299, type: 2}
+  - {fileID: 11400000, guid: 7a22e03a14c650d4da1d721fa9be9c14, type: 2}
 --- !u!1 &1004388575
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,8 +724,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 972050389}
-        m_TargetAssemblyTypeName: ImageTracking, Assembly-CSharp
-        m_MethodName: HideAllObjects
+        m_TargetAssemblyTypeName: AlchemyAR.AR.ImageTracking, Assembly-CSharp
+        m_MethodName: ResetAllObjects
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

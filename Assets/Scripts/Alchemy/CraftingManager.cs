@@ -10,7 +10,7 @@ namespace AlchemyAR.Alchemy
         public static CraftingManager Instance { get; private set; }
 
         public ImageTracking imageTrackingManager;
-        
+
         [SerializeField] private List<Recipe> recipes;
 
         private (Ingredient ingr1, Ingredient ingr2) _ingredientsToMix;
@@ -86,6 +86,9 @@ namespace AlchemyAR.Alchemy
                     ) + Vector3.up * 0.25f; // Move result up, so it doesn't collide with others
                     
                     result.SetActive(true);
+                    
+                    if (result.TryGetComponent(out Ingredient ingredient))
+                        ingredient.ResetValues();
                     
                     return;
                 }

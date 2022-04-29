@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bfb9818e66a63d44981865a090c75bb, type: 3}
+  m_Name: Green Potion Recipe
+  m_EditorClassIdentifier: 
+  ingredient1: {fileID: 7112310692730709699, guid: 726198c171df5a549b4c2f12f7dab798, type: 3}
+  tempStatus1: 0
+  ingredient2: {fileID: 7112310692730709699, guid: f2296fa777c7b4e43afb74853721d068, type: 3}
+  tempStatus2: 1
+  result: {fileID: 1000013846074356, guid: 104a91df947681d4b87e81c4d2ac2bbe, type: 3}
