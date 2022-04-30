@@ -15,15 +15,10 @@ namespace AlchemyAR.Alchemy
 
         public bool IsCorrect(Ingredient ing1, Ingredient ing2)
         {
-            return (ing1.name, ing1.tempStatus) == (ingredient1.name, tempStatus1) &&
-                   (ing2.name, ing2.tempStatus) == (ingredient2.name, tempStatus2) ||
-                   (ing2.name, ing2.tempStatus) == (ingredient1.name, tempStatus1) &&
-                   (ing1.name, ing1.tempStatus) == (ingredient2.name, tempStatus2);
-        }
-
-        public void LogRecipe()
-        {
-            Debug.Log($"{result.name} recipe: {ingredient1.name} ({tempStatus1}) + {ingredient2.name} ({tempStatus2})");
+            return (ing1.name, ing1.TempStatus) == (ingredient1.name, tempStatus1) &&
+                   (ing2.name, ing2.TempStatus) == (ingredient2.name, tempStatus2) ||
+                   (ing2.name, ing2.TempStatus) == (ingredient1.name, tempStatus1) &&
+                   (ing1.name, ing1.TempStatus) == (ingredient2.name, tempStatus2);
         }
     }
 }

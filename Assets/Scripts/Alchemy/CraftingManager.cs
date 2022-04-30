@@ -29,31 +29,15 @@ namespace AlchemyAR.Alchemy
 
         public void AddIngredient(Ingredient ingredient)
         {
-            Debug.Log("AddIngredient is called");
             if (_ingredientsToMix.ingr1 == null)
                 _ingredientsToMix.ingr1 = ingredient;
             else if (_ingredientsToMix.ingr2 == null)
                 _ingredientsToMix.ingr2 = ingredient;
-            LogIngredients();
-            
-            if (_ingredientsToMix.ingr1 != null && _ingredientsToMix.ingr2 != null)
-            {
-                TryMixIngredients(_ingredientsToMix.ingr1, _ingredientsToMix.ingr2);
-                ClearIngredients();
-            }
-        }
 
-        private void LogIngredients()
-        {
-            if (_ingredientsToMix.ingr1 == null && _ingredientsToMix.ingr2 == null)
-            {
-                Debug.Log("No ingredients added");
-                return;
-            }
-            if (_ingredientsToMix.ingr1 != null)
-                Debug.Log($"Ingredient1: {_ingredientsToMix.ingr1.name}");
-            if (_ingredientsToMix.ingr2 != null)
-                Debug.Log($"Ingredient2: {_ingredientsToMix.ingr2.name}");
+            if (_ingredientsToMix.ingr1 == null || _ingredientsToMix.ingr2 == null) return;
+            
+            TryMixIngredients(_ingredientsToMix.ingr1, _ingredientsToMix.ingr2);
+            ClearIngredients();
         }
 
         private void ClearIngredients()
@@ -64,37 +48,36 @@ namespace AlchemyAR.Alchemy
 
         private void TryMixIngredients(Ingredient ingr1, Ingredient ingr2)
         {
-            Debug.Log($"Mix called on ingredients: {ingr1.name} ({ingr1.tempStatus}) and {ingr2.name} ({ingr2.tempStatus})");
+            Debug.Log($"Mix called on ingredients: {ingr1.name} ({ingr1.TempStatus}) and {ingr2.name} ({ingr2.TempStatus})");
 
             foreach (var recipe in recipes)
             {
-                recipe.LogRecipe();
-                if (recipe.IsCorrect(ingr1, ingr2))
-                {
-                    Debug.Log("Success!");
+                if (!recipe.IsCorrect(ingr1, ingr2)) continue;
+                
+                var result = imageTrackingManager.ARObjects[recipe.result.name];
+                
+                // Do nothing if result is already active in scene
+                if (result.activeSelf) return;
+
+                // Add LeanDragTranslate to drag object via touch
+                if (!result.TryGetComponent(out LeanDragTranslate _))
+                    result.AddComponent<LeanDragTranslate>();
                     
-                    var result = imageTrackingManager.ARObjects[recipe.result.name];
+                // Move result up, so it doesn't collide with others
+                result.transform.position = Vector3.Lerp(
+                    ingr1.gameObject.transform.position,
+                    ingr2.gameObject.transform.position,
+                    0.5f
+                ) + Vector3.up * 0.25f;
                     
-                    // Add LeanDragTranslate to drag object via touch
-                    if (!result.TryGetComponent(out LeanDragTranslate _))
-                        result.AddComponent<LeanDragTranslate>();
+                result.SetActive(true);
                     
-                    result.transform.position = Vector3.Lerp(
-                        ingr1.gameObject.transform.position,
-                        ingr2.gameObject.transform.position,
-                        0.5f
-                    ) + Vector3.up * 0.25f; // Move result up, so it doesn't collide with others
+                if (result.TryGetComponent(out Ingredient ingredient))
+                    ingredient.ResetValues();
                     
-                    result.SetActive(true);
-                    
-                    if (result.TryGetComponent(out Ingredient ingredient))
-                        ingredient.ResetValues();
-                    
-                    return;
-                }
+                return;
             }
             
-            Debug.Log("Fail");
             ingr1.SetToWasted();
             ingr2.SetToWasted();
         }

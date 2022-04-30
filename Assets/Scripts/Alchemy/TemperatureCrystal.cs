@@ -7,12 +7,6 @@ namespace AlchemyAR.Alchemy
         [Range(-1f, 1f)]
         [SerializeField] private float tempOffset;
 
-        private void OnCollisionEnter(Collision collision)
-        {
-            var obj = collision.gameObject;
-            Debug.Log(gameObject.name + " collided with " + obj.name);
-        }
-
         private void OnCollisionStay(Collision collision)
         {
             var obj = collision.gameObject;

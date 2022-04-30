@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace AlchemyAR.Alchemy
@@ -18,21 +17,44 @@ namespace AlchemyAR.Alchemy
             Hot
         }
 
+        // Ingredient properties
         public new string name;
         public Status status = Status.Normal;
-        public TemperatureStatus tempStatus = TemperatureStatus.Warm;
+        [Range(MinTemperature, MaxTemperature)] public float temperature;
         
-        [Range(0, 100)] public float temperature = 50;
+        // Temperature constants
+        private const float MinTemperature = 0;
+        private const float MaxTemperature = 30;
+        private const float DefaultTemperature = (MaxTemperature + MinTemperature) / 2;
+        private const float ColdTemperature = MinTemperature + (MaxTemperature - MinTemperature) / 3;
+        private const float HotTemperature = MaxTemperature - (MaxTemperature - MinTemperature) / 3;
+
+        private TemperatureStatus _tempStatus = TemperatureStatus.Warm;
+
+        public TemperatureStatus TempStatus
+        {
+            get => _tempStatus;
+
+            private set
+            {
+                if (_tempStatus == value) return;
+                
+                _tempStatus = value;
+                ChangeTempColor(value);
+            }
+        }
+        
+        // Shader properties
         private Material _material;
         private Texture2D _texture;
         private static readonly int RimColor = Shader.PropertyToID("_RimColor");
-        private static readonly int Texture1 = Shader.PropertyToID("_Texture");
         private static readonly int IngrTexture = Shader.PropertyToID("_IngrTexture");
 
 
         private void Start()
         {
             name = gameObject.name;
+            temperature = DefaultTemperature;
             
             // Get material
             _material = gameObject.GetComponent<MeshRenderer>().material;
@@ -42,23 +64,26 @@ namespace AlchemyAR.Alchemy
             _material.SetTexture(IngrTexture, _texture);
             
             // No rim light
-            _material.SetColor(RimColor, Color.black);
+            SetShaderColor(Color.black);
         }
 
         public void ChangeTemperature(float tempOffset)
         {
             temperature += tempOffset;
-            temperature = Mathf.Clamp(temperature, 0, 100);
+            temperature = Mathf.Clamp(temperature, MinTemperature, MaxTemperature);
             
-            tempStatus = temperature switch
+            TempStatus = temperature switch
             {
-                <= 33 => TemperatureStatus.Cold,
-                >= 66 => TemperatureStatus.Hot,
+                <= ColdTemperature => TemperatureStatus.Cold,
+                >= HotTemperature => TemperatureStatus.Hot,
                 _ => TemperatureStatus.Warm
             };
-            
+        }
+        
+        private void ChangeTempColor(TemperatureStatus tempStatus)
+        {
             // Change color of emission
-            _material.SetColor(RimColor, tempStatus switch
+            SetShaderColor(tempStatus switch
             {
                 TemperatureStatus.Cold => Color.cyan,
                 TemperatureStatus.Hot => Color.red,
@@ -73,29 +98,31 @@ namespace AlchemyAR.Alchemy
             
             var obj = collision.gameObject;
             
-            // Do nothing if other object isn't an ingredient or is wasted
-            if (!obj.TryGetComponent(out Ingredient ingr) || ingr.status == Status.Wasted) return;
-            
-            Debug.Log(gameObject.name + " collided with " + obj.name);
-            
-            CraftingManager.Instance.AddIngredient(this);
+            // If object is an ingredient and isn't wasted, add to ingredients to mix
+            if (obj.TryGetComponent(out Ingredient ingr) && ingr.status != Status.Wasted)
+                CraftingManager.Instance.AddIngredient(this);
         }
 
         public void SetToWasted()
         {
             status = Status.Wasted;
             
-            _material.SetColor(RimColor, Color.green);
+            SetShaderColor(Color.green);
         }
 
         public void ResetValues()
         {
             status = Status.Normal;
-            temperature = 50;
-            tempStatus = TemperatureStatus.Warm;
+            temperature = DefaultTemperature;
+            _tempStatus = TemperatureStatus.Warm;
             
             if (_material != null && _material.name == "Temperature (Instance)") 
-                _material.SetColor(RimColor, Color.black);
+                SetShaderColor(Color.black);
+        }
+
+        private void SetShaderColor(Color color)
+        {
+            _material.SetColor(RimColor, color);
         }
     }
 }

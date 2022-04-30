@@ -23,7 +23,7 @@ MonoBehaviour:
     m_SerializedTextureGuid:
       m_GuidLow: 10800799487236964016
       m_GuidHigh: 15802857518688116137
-    m_Size: {x: 0.1, y: 0.1}
+    m_Size: {x: 0.07, y: 0.07}
     m_SpecifySize: 1
     m_Name: Fire Crystal
     m_Texture: {fileID: 2800000, guid: 96fafeb025e895e4a91d84a52f074fdb, type: 3}
@@ -33,7 +33,7 @@ MonoBehaviour:
     m_SerializedTextureGuid:
       m_GuidLow: 2216930621825107138
       m_GuidHigh: 905647266145613448
-    m_Size: {x: 0.1, y: 0.1}
+    m_Size: {x: 0.07, y: 0.07}
     m_SpecifySize: 1
     m_Name: Ice Crystal
     m_Texture: {fileID: 2800000, guid: 9d9244c21ea71ec488b669e66381910c, type: 3}
@@ -43,7 +43,7 @@ MonoBehaviour:
     m_SerializedTextureGuid:
       m_GuidLow: 4707506208743538412
       m_GuidHigh: 900259527096239881
-    m_Size: {x: 0.1, y: 0.1}
+    m_Size: {x: 0.07, y: 0.07}
     m_SpecifySize: 1
     m_Name: Garlic
     m_Texture: {fileID: 2800000, guid: 961abeec6bf4415409873b26455d7e0c, type: 3}
@@ -53,7 +53,7 @@ MonoBehaviour:
     m_SerializedTextureGuid:
       m_GuidLow: 154251549591996197
       m_GuidHigh: 1514546669795607434
-    m_Size: {x: 0.1, y: 0.1}
+    m_Size: {x: 0.07, y: 0.07}
     m_SpecifySize: 1
     m_Name: Lemon
     m_Texture: {fileID: 2800000, guid: 937c072502f702248a03ebf82bc00415, type: 3}
@@ -63,7 +63,7 @@ MonoBehaviour:
     m_SerializedTextureGuid:
       m_GuidLow: 16227768709252212055
       m_GuidHigh: 16616875656548809529
-    m_Size: {x: 0.1, y: 0.1}
+    m_Size: {x: 0.07, y: 0.07}
     m_SpecifySize: 1
     m_Name: Acorn
     m_Texture: {fileID: 2800000, guid: a42d65579da9e134397b6da15e009be6, type: 3}
@@ -73,7 +73,7 @@ MonoBehaviour:
     m_SerializedTextureGuid:
       m_GuidLow: 12115945885699738255
       m_GuidHigh: 11002824633608707818
-    m_Size: {x: 0.1, y: 0.1}
+    m_Size: {x: 0.07, y: 0.07}
     m_SpecifySize: 1
     m_Name: Egg
     m_Texture: {fileID: 2800000, guid: 0afd0a8f7c97a824ea1e2a74b5e2b198, type: 3}
@@ -83,7 +83,7 @@ MonoBehaviour:
     m_SerializedTextureGuid:
       m_GuidLow: 7571914595934655662
       m_GuidHigh: 14029560413569327306
-    m_Size: {x: 0.1, y: 0.1}
+    m_Size: {x: 0.07, y: 0.07}
     m_SpecifySize: 1
     m_Name: Mushroom
     m_Texture: {fileID: 2800000, guid: 1047d4aed8356914caa0ae45dd02b3c2, type: 3}
