@@ -15,6 +15,9 @@ namespace AlchemyAR.AR
         [SerializeField] private GameObject[] objectsToPlace;
 
         public readonly Dictionary<string, GameObject> ARObjects = new Dictionary<string, GameObject>();
+
+        [SerializeField] private Transform spawnPool;
+        
     
         private ARTrackedImageManager _trackedImageManager;
 
@@ -57,6 +60,9 @@ namespace AlchemyAR.AR
         
             // Scale last to not break label position
             ResizeObject(newObject, label);
+            
+            // Move object to spawn pool
+            newObject.transform.SetParent(spawnPool);
             
             newObject.SetActive(false);
         

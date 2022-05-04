@@ -9724,7 +9724,7 @@ GameObject:
   - component: {fileID: 4000010690109084}
   - component: {fileID: 6452492137559711966}
   m_Layer: 0
-  m_Name: Health Potion
+  m_Name: Red Potion
   m_TagString: Potion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -48,7 +48,7 @@ namespace AlchemyAR.Alchemy
 
         private void TryMixIngredients(Ingredient ingr1, Ingredient ingr2)
         {
-            Debug.Log($"Mix called on ingredients: {ingr1.name} ({ingr1.TempStatus}) and {ingr2.name} ({ingr2.TempStatus})");
+            // Debug.Log($"Mix called on ingredients: {ingr1.name} ({ingr1.TempStatus}) and {ingr2.name} ({ingr2.TempStatus})");
 
             foreach (var recipe in recipes)
             {
@@ -74,6 +74,8 @@ namespace AlchemyAR.Alchemy
                     
                 if (result.TryGetComponent(out Ingredient ingredient))
                     ingredient.ResetValues();
+                else if (result.CompareTag("Potion"))
+                    GetComponent<GameManager>().readyPotions.Add(result);
                     
                 return;
             }
