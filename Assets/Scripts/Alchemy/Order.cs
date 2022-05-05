@@ -34,7 +34,7 @@ namespace AlchemyAR.Alchemy
             timeLeft -= Time.deltaTime;
             orderDisplay.value = timeLeft;
 
-            if (timeLeft <= 0)
+            if (timeLeft <= 0 || GameManager.Instance.gameOver)
             {
                 GameManager.Instance.activeOrders.Remove(this);
                 DestroyOrder();

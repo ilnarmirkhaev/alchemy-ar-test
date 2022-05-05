@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -15,12 +16,15 @@ namespace AlchemyAR.Alchemy
         {
             if (Instance != null && Instance != this)
             {
-                Destroy(this);
+                Destroy(gameObject);
             }
             else
             {
                 Instance = this;
             }
+            
+            // DontDestroyOnLoad(gameObject);
+            Init();
         }
         
         // Items and prices
@@ -48,6 +52,11 @@ namespace AlchemyAR.Alchemy
         [SerializeField] private TMP_Text goldDisplay;
         public GameObject ordersPanel;
         public Slider orderDisplay;
+        [SerializeField] private GameObject bookPanel;
+
+        // Game over
+        [SerializeField] private GameObject winPanel;
+        public bool gameOver;
 
         private int Gold
         {
@@ -58,11 +67,11 @@ namespace AlchemyAR.Alchemy
                 goldDisplay.text = $"{gold} / {levelGoal}";
                 
                 if (gold >= levelGoal)
-                    Debug.Log("YOU WIN!!!");
+                    Win();
             }
         }
 
-        private IEnumerator Start()
+        private void Init()
         {
             goldDisplay.text = $"{gold} / {levelGoal}";
             
@@ -77,7 +86,11 @@ namespace AlchemyAR.Alchemy
             {
                 Icons.Add(potion.name, Resources.Load<Sprite>($"Icons/{potion.name}"));
             }
-            
+        }
+
+        private IEnumerator Start()
+        {
+            gameOver = false;
             yield return new WaitForSeconds(2);
             
             _waitingToStart = false;
@@ -86,14 +99,14 @@ namespace AlchemyAR.Alchemy
 
         private void Update()
         {
-            if (_waitingToStart) return;
+            if (_waitingToStart || gameOver) return;
             
             _timeFromLastOrder += Time.deltaTime;
             
             if (_timeFromLastOrder >= timeBetweenOrders || activeOrders.Count == 0)
             {
                 NewOrder();
-                _timeFromLastOrder = 0;
+                _timeFromLastOrder = -1f;
             }
         }
 
@@ -107,6 +120,7 @@ namespace AlchemyAR.Alchemy
 
         public void Sell()
         {
+            if (gameOver) return;
             if (readyPotions.Count == 0 || activeOrders.Count == 0) return;
 
             var income = 0;
@@ -143,6 +157,18 @@ namespace AlchemyAR.Alchemy
         public void ClearReadyPotions()
         {
             readyPotions.Clear();
+        }
+
+        private void Win()
+        {
+            gameOver = true;
+            bookPanel.SetActive(false);
+            winPanel.SetActive(true);
+        }
+
+        public void PlayAgain()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
